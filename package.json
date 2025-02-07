@@ -1,0 +1,48 @@
+{
+    "name": "zk-sui",
+    "version": "0.0.1",
+    "type": "commonjs",
+    "main": "./dist/cjs/index.js",
+    "module": "./dist/esm/index.js",
+    "types": "./dist/cjs/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/esm/index.js",
+            "require": "./dist/cjs/index.js"
+        }
+    },
+    "sideEffects": false,
+    "files": [
+        "CHANGELOG.md",
+        "dist"
+    ],
+    "scripts": {
+        "clean": "rm -rf tsconfig.tsbuildinfo ./dist",
+        "build": "npm run clean && npm run build:cjs && npm run build:esm",
+        "build:cjs": "tsc -p tsconfig.json",
+        "build:esm": "tsc -p tsconfig.esm.json",
+        "dev": "tsc -p tsconfig.json --watch",
+        "test": "vitest",
+        "prettier:check": "prettier -c --ignore-unknown .",
+        "prettier:fix": "prettier -w --ignore-unknown .",
+        "eslint:check": "eslint --max-warnings=0 .",
+        "eslint:fix": "eslint --fix .",
+        "lint": "npm run eslint:check && npm run prettier:check",
+        "lint:fix": "npm run eslint:fix && npm run prettier:fix"
+    },
+    "devDependencies": {
+        "@types/node": "^22.10.5",
+        "@typescript-eslint/eslint-plugin": "^6.0.0",
+        "@typescript-eslint/parser": "^6.0.0",
+        "eslint": "^8.45.0",
+        "prettier": "^3.0.0",
+        "typescript": "^5.7.2",
+        "vitest": "^2.1.8"
+    },
+    "dependencies": {
+        "@mysten/wallet-standard": "^0.13.26",
+        "mitt": "^3.0.1",
+        "nanostores": "^0.10.3",
+        "valibot": "^0.36.0"
+    }
+}
